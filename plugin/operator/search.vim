@@ -9,6 +9,7 @@ set cpo&vim
 
 
 call operator#user#define('search', 'operator#search#do')
+call operator#user#define('search_as_word', 'operator#search#do_as_word')
 
 
 let &cpo = s:save_cpo

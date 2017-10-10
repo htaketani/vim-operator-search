@@ -35,6 +35,9 @@ Example: >
 ["x]<Plug>(operator-search){motion}		*<Plug>(operator-search)*
 	{motion} でカーソルが動く範囲のテキストを検索する。
 
+["x]<Plug>(operator-search_as_word)){motion}		*<Plug>(operator-search_as_word)*
+	{motion} でカーソルが動く範囲のテキストを単語として検索する。
+
 
 ==============================================================================
 vim:tw=78:fo=tcq2mM:ts=8:ft=help:norl

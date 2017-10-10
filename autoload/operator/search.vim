@@ -37,5 +37,25 @@ function! operator#search#do(motion_wise)
 endfunction
 
 
+function! operator#search#do_as_word(motion_wise)
+	let pattern = input("Input search pattern: ")
+	if empty(pattern)
+		return
+	endif
+	let pattern = '\<' . pattern . '\>'
+	if a:motion_wise ==# 'line'
+		let @/ = s:region_search_pattern([getpos("'[")[1], 1], [getpos("']")[1], col('$')], pattern)
+	else
+		let @/ = s:region_search_pattern(getpos("'[")[1:], getpos("']")[1:], pattern)
+	endif
+	try
+		normal! n
+		call feedkeys(":set hlsearch\<CR>", 'n')
+	catch /^Vim\%((\a\+)\)\=:E486/
+		echohl ErrorMsg | echo "Not found pattern: " . pattern | echohl None
+	endtry
+endfunction
+
+
 let &cpo = s:save_cpo
 unlet s:save_cpo
